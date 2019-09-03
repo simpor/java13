@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'testis13'
+version '1.0-SNAPSHOT'
+
+mainClassName = 'Test13'
+
+run {
+    standardInput = System.in
+    jvmArgs(['--enable-preview'])
+}
+
+
+jar {
+    manifest {
+        attributes 'Main-Class' : 'Test13'
+    }
+}
+
+sourceCompatibility = 13
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile).each {
+    it.options.compilerArgs.add('--enable-preview')
+}
+
+test {
+    jvmArgs(['--enable-preview'])
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
